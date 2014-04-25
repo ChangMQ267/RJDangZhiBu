@@ -1,0 +1,34 @@
+.red5 {
+    color: #B31904;
+    font-size: 12px;
+}
+
+.content {
+    color: #333333;
+    font-family: "Î¢ÈíÑÅºÚ";
+    font-size: 14px;
+    line-height: 25px;
+    padding: 20px 0;
+}
+
+h1 {
+    color: #CE0B00;
+    font-family: "Î¢ÈíÑÅºÚ";
+    font-size: 20px;
+    line-height: 25px;
+    margin: 0;
+    padding: 30px 30px 10px;
+}
+
+table td {
+    font-size: 12px;
+}
+table th {
+    font-size: 12px;
+}
+a {
+    color: #333333;
+}
+a:hover {
+    text-decoration: underline;
+}

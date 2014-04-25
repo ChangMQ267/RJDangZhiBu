@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+  <class name="com.qianyan.model.Admin" table="admin">
+  
+    <id name="id" column="id" type="int">
+      <generator class="increment"/>
+    </id>
+    
+    <property name="username">
+    	<column name="username" length="50"></column>
+    </property>
+    
+    <property name="password">
+    	<column name="password" length="50"></column>
+    </property>
+    
+    <property name="adminName">
+    	<column name="adminName" length="50"></column>
+    </property>
+    
+    <property name="grade">
+    	<column name="grade" length="50"></column>
+    </property>
+    
+    <property name="state">
+    	<column name="state" length="50"></column>
+    </property>
+    
+  </class>
+</hibernate-mapping>

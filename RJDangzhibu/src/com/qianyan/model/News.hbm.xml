@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+  <class name="com.qianyan.model.News" table="news">
+  
+    <id name="id" column="id" type="int">
+      <generator class="increment"/>
+    </id>
+    
+ 	<many-to-one name="admin" cascade="save-update" lazy="false" not-null="true"></many-to-one>
+    
+    <many-to-one name="catelog" cascade="save-update" lazy="false" not-null="true"></many-to-one>
+    
+    <property name="title">
+    	<column name="title" length="300"></column>
+    </property>
+    
+    <property name="content">
+    	<column name="content" length="20000"></column>
+    </property>
+    
+    <property name="releaseTime" type="date">
+    	<column name="releaseTime"></column>
+    </property>
+    
+    <property name="visitTotal" type="int">
+    	<column name="visitTotal" length="100"></column>
+    </property>
+    
+    
+  </class>
+</hibernate-mapping>

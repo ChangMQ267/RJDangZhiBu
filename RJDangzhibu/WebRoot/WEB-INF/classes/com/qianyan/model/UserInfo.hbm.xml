@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+  <class name="com.qianyan.model.UserInfo" table="userinfo">
+  
+    <id name="id" column="id" type="int">
+      <generator class="increment"/>
+    </id>
+    
+    <property name="username">
+    	<column name="username" length="50"></column>
+    </property>
+    
+    <property name="password">
+    	<column name="password" length="50"></column>
+    </property>
+    
+    <property name="studentName">
+    	<column name="studentName" length="50"></column>
+    </property>
+    
+    <many-to-one name="inClass" cascade="save-update" lazy="false" not-null="true"></many-to-one>
+    
+    <property name="state">
+    	<column name="state" length="50"></column>
+    </property>
+    
+    <property name="applyParty">
+    	<column name="applyParty" length="80"></column>
+    </property>
+    
+    <property name="departGradu">
+    	<column name="departGradu" length="80"></column>
+    </property>
+    
+    <property name="activist">
+    	<column name="activist" length="80"></column>
+    </property>
+    
+    <property name="ready">
+    	<column name="ready" length="80"></column>
+    </property>
+    
+    <property name="positive">
+    	<column name="positive" length="50"></column>
+    </property>
+    
+    <property name="relationIn">
+    	<column name="relationIn" length="80"></column>
+    </property>
+    
+    <property name="relationOut">
+    	<column name="relationOut" length="80"></column>
+    </property>
+    
+    <property name="flow">
+    	<column name="flow" length="80"></column>
+    </property>
+    
+  </class>
+</hibernate-mapping>

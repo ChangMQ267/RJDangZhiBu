@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+	<!-- 通过常量配置Struts 2的国际化资源信息 -->
+	<constant name="struts.custom.i18n.resources" value="globalMessages" />
+	<!-- 通过常量配置Struts 2所使用的解码集 -->
+	<constant name="struts.i18n.encoding" value="UTF-8" />
+	<!-- 配置Struts上传文件的最大上限 -->
+	<constant name="struts.multipart.maxSize" value="10000000000" />
+
+	<constant name="struts.devMode" value="true"></constant>
+
+	<constant name="struts.action.excludePattern" value="/ckfinder.*" />
+
+	<constant name="struts.multipart.saveDir" value="/tmp"></constant>
+
+	<package name="strutsModel-default" namespace="/" extends="struts-default">
+	</package>
+	<!-- 上传下载 -->
+	<package name="file" namespace="/" extends="struts-default">
+		<result-types>
+			<result-type name="streamx"
+				class="com.sunspoter.lib.web.struts2.dispatcher.StreamResultX" />
+		</result-types>
+		<default-action-ref name="fileshow" />
+		<global-results>
+			<result name="error">/error.jsp</result>
+		</global-results>
+		<global-exception-mappings>
+			<exception-mapping exception="java.lang.Exception"
+				result="error" />
+		</global-exception-mappings>
+		<action name="fileupload">
+			<result>/admin/admin/Admin_add_doc.jsp</result>
+		</action>
+		<action name="filedownload" class="com.qianyan.action.FileDownloadAction">
+			<param name="savePath">/files</param>
+			<result name="success" type="streamx">
+				<param name="contentType">${contentType}</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">filename="${fileName}"</param>
+			</result>
+		</action>
+		<action name="adminfileshow" class="com.qianyan.action.FileShowAction">
+			<param name="savePath">/files</param>
+			<result>/admin/admin/Admin_show_file.jsp</result>
+			<result name="input">/error.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+		<action name="fileshow" class="com.qianyan.action.FileShowAction">
+			<param name="savePath">/files</param>
+			<result>/front/document/download.jsp</result>
+			<result name="input">/error.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+		<action name="fileupload" class="com.qianyan.action.FileUploadAction">
+			<param name="savePath">/files</param>
+			<result type="redirect">adminfileshow</result>
+			<result name="input">/admin/admin/Admin_add_doc.jsp</result>
+			<result name="error">/error.jsp</result>
+			<interceptor-ref name="fileUpload">
+				<param name="allowedTypes">application/kswps,application/kset</param>
+				<param name="maximumSize">1025956</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack" />
+		</action>
+
+	</package>
+	<!-- 管理员操作 -->
+	<package name="admin" namespace="/admin" extends="strutsModel-default">
+		<action name="*-*" class="com.qianyan.action.{1}Action" method="{2}">
+			<!--运用通配符 -->
+			<result name="Admin">/admin/admin/{1}-{2}.jsp</result>
+			<result name="News">/admin/news/{1}-{2}.jsp</result>
+			<result name="Catelog">/admin/others/{1}-{2}.jsp</result>
+			<result name="InClass">/admin/others/{1}-{2}.jsp</result>
+			<result name="Professional">/admin/others/{1}-{2}.jsp</result>
+			<result name="UserInfo">/admin/userInfo/{1}-{2}.jsp</result>
+			<result name="resetPasswordInput">/front/resetPasswordInput.jsp</result>
+			<result name="resetPassword">/front/resetPassword.jsp</result>
+			<result name="newsList">/front/News-listByCId.jsp</result>
+			<result name="adminLogin">/admin/admin/login.jsp</result>
+			<result name="adminSuccess">/admin/admin/index.jsp</result>
+			<result name="userInfoLogin" type="redirectAction">
+				<param name="namespace">/admin</param>
+				<param name="actionName">Index-index</param>
+			</result>
+			<result name="index">/front/index.jsp</result>
+		</action>
+
+	</package>
+
+</struts>
